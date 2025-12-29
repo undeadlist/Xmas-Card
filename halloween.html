@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Card</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a0a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Floating elements */
+        .floaters {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .floater {
+            position: absolute;
+            opacity: 0.7;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Title */
+        h1 {
+            color: #ff6600;
+            margin: 15px 0 20px 0;
+            text-shadow: 0 0 30px #ff6600, 0 0 60px #ff3300;
+            font-size: 3em;
+        }
+
+        .subtitle {
+            color: #9933ff;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #9933ff;
+        }
+
+        /* Video Section */
+        .video-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 10px 0;
+        }
+
+        /* Pumpkins */
+        .pumpkin {
+            color: #ff6600;
+            font-size: 14px;
+            line-height: 1.2;
+            white-space: pre;
+            text-shadow: 0 0 10px #ff3300;
+        }
+
+        .stem { color: #228b22; }
+        .face { color: #ffff00; text-shadow: 0 0 15px #ffff00; }
+        .ground { color: #4a2800; }
+
+        /* Video Display */
+        .video-container {
+            border: 5px solid #ff6600;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.4), 0 0 60px rgba(153, 51, 255, 0.3);
+        }
+
+        #ytplayer {
+            display: block;
+            background: #000;
+        }
+
+        /* Controls */
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff6600, #cc3300);
+            color: #fff;
+            border: 3px solid #ff9933;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff9933, #ff6600);
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.7);
+            transform: scale(1.05);
+        }
+
+        /* Karaoke Lyrics */
+        .lyrics-container {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .lyric-current {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff6600;
+            text-shadow: 0 0 20px #ff6600, 0 0 40px #ff3300;
+            margin: 10px 0;
+            min-height: 45px;
+            transition: all 0.3s ease;
+        }
+
+        .lyric-next {
+            font-size: 20px;
+            color: #666;
+            min-height: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .lyric-current.chorus {
+            color: #9933ff;
+            text-shadow: 0 0 20px #9933ff, 0 0 40px #6600cc;
+        }
+
+        .lyric-current.highlight {
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00, 0 0 40px #009900;
+        }
+
+        /* Footer */
+        .credit {
+            color: #666;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .decorations {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="floaters" id="floaters"></div>
+
+    <h1>Happy Halloween</h1>
+    <div class="subtitle">~ A Spooky Card ~</div>
+
+    <div class="video-section">
+        <!-- Left Pumpkin -->
+        <pre class="pumpkin">      <span class="stem">##</span>
+    ,------.
+   /        \
+  / <span class="face">^</span>    <span class="face">^</span>  \
+ |    <span class="face">oo</span>    |
+ |   <span class="face">\__/</span>   |
+  \        /
+   '------'
+  <span class="ground">~~~~~~~~~~~</span></pre>
+
+        <div class="video-container">
+            <iframe id="ytplayer" width="640" height="360"
+                src="https://www.youtube.com/embed/fOQNS8veSdE?enablejsapi=1&origin=https://undeadlist.github.io"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Right Pumpkin -->
+        <pre class="pumpkin">      <span class="stem">##</span>
+    ,------.
+   /        \
+  / <span class="face">></span>    <span class="face"><</span>  \
+ |    <span class="face">oo</span>    |
+ |   <span class="face">^^^^</span>   |
+  \        /
+   '------'
+  <span class="ground">~~~~~~~~~~~</span></pre>
+    </div>
+
+    <div class="controls">
+        <button onclick="playVideo()">Play</button>
+        <button onclick="restartVideo()">Restart</button>
+    </div>
+
+    <div class="lyrics-container">
+        <div class="lyric-current" id="lyricCurrent"></div>
+        <div class="lyric-next" id="lyricNext"></div>
+    </div>
+
+    <div class="credit">Happy Halloween!</div>
+    <div class="decorations">
+        <span>🎃</span>
+        <span>👻</span>
+        <span>🦇</span>
+        <span>🕷️</span>
+        <span>🎃</span>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        const lyricCurrent = document.getElementById('lyricCurrent');
+        const lyricNext = document.getElementById('lyricNext');
+        let player;
+        let lyricInterval;
+
+        // Floating bats and ghosts
+        const floatChars = ['🦇', '👻', '🕷️'];
+        function addFloater() {
+            const f = document.createElement('div');
+            f.className = 'floater';
+            f.textContent = floatChars[Math.floor(Math.random() * floatChars.length)];
+            f.style.left = Math.random() * 100 + 'vw';
+            f.style.animationDuration = (Math.random() * 3 + 7) + 's';
+            f.style.fontSize = (Math.random() * 12 + 16) + 'px';
+            document.getElementById('floaters').appendChild(f);
+            setTimeout(() => f.remove(), 10000);
+        }
+        for (let i = 0; i < 10; i++) setTimeout(addFloater, Math.random() * 2000);
+        setInterval(addFloater, 800);
+
+        // Add your lyrics here - timed to your Halloween video
+        // Example format: { time: SECONDS, text: "LYRIC", type: "chorus" or "highlight" or "" }
+        const lyrics = [
+            { time: 0, text: "🎃 🦇 🎃", type: "highlight" },
+            { time: 5, text: "Add your lyrics here!", type: "" },
+            { time: 10, text: "Edit the lyrics array in this file", type: "" },
+            { time: 15, text: "Match times to your song", type: "" },
+            { time: 20, text: "🎃 Happy Halloween! 🎃", type: "highlight" }
+        ];
+
+        let currentLyricIdx = -1;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            lyricNext.textContent = 'Click video to play...';
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                lyricInterval = setInterval(updateLyrics, 100);
+            } else {
+                clearInterval(lyricInterval);
+            }
+            if (event.data == YT.PlayerState.ENDED) {
+                lyricCurrent.textContent = '🎃 Happy Halloween! 🎃';
+                lyricCurrent.className = 'lyric-current highlight';
+                lyricNext.textContent = '';
+            }
+        }
+
+        function updateLyrics() {
+            if (!player || !player.getCurrentTime) return;
+            const time = player.getCurrentTime();
+            let idx = -1;
+
+            for (let i = lyrics.length - 1; i >= 0; i--) {
+                if (time >= lyrics[i].time) {
+                    idx = i;
+                    break;
+                }
+            }
+
+            if (idx !== currentLyricIdx) {
+                currentLyricIdx = idx;
+                if (idx >= 0) {
+                    lyricCurrent.textContent = lyrics[idx].text;
+                    lyricCurrent.className = 'lyric-current ' + (lyrics[idx].type || '');
+                    if (idx + 1 < lyrics.length) {
+                        lyricNext.textContent = lyrics[idx + 1].text;
+                    } else {
+                        lyricNext.textContent = '';
+                    }
+                }
+            }
+        }
+
+        function playVideo() {
+            if (player && player.playVideo) player.playVideo();
+        }
+
+        function restartVideo() {
+            if (player && player.seekTo) {
+                player.seekTo(0);
+                player.playVideo();
+                currentLyricIdx = -1;
+            }
+        }
+
+        lyricCurrent.textContent = '';
+        lyricNext.textContent = 'Loading...';
+    </script>
+</body>
+</html>
