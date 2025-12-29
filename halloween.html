@@ -63,18 +63,14 @@
             margin: 10px 0;
         }
 
-        /* Pumpkins */
-        .pumpkin {
-            color: #ff6600;
-            font-size: 14px;
-            line-height: 1.2;
-            white-space: pre;
-            text-shadow: 0 0 10px #ff3300;
+        /* Side Icons */
+        .side-icons {
+            font-size: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            filter: drop-shadow(0 0 10px #ff6600);
         }
-
-        .stem { color: #228b22; }
-        .face { color: #ffff00; text-shadow: 0 0 15px #ffff00; }
-        .ground { color: #4a2800; }
 
         /* Video Display */
         .video-container {
@@ -171,16 +167,11 @@
     <div class="subtitle">~ A Spooky Card ~</div>
 
     <div class="video-section">
-        <!-- Left Pumpkin -->
-        <pre class="pumpkin">      <span class="stem">##</span>
-    ,------.
-   /        \
-  / <span class="face">^</span>    <span class="face">^</span>  \
- |    <span class="face">oo</span>    |
- |   <span class="face">\__/</span>   |
-  \        /
-   '------'
-  <span class="ground">~~~~~~~~~~~</span></pre>
+        <div class="side-icons">
+            <span>🎃</span>
+            <span>👻</span>
+            <span>🦇</span>
+        </div>
 
         <div class="video-container">
             <iframe id="ytplayer" width="640" height="360"
@@ -191,16 +182,11 @@
             </iframe>
         </div>
 
-        <!-- Right Pumpkin -->
-        <pre class="pumpkin">      <span class="stem">##</span>
-    ,------.
-   /        \
-  / <span class="face">></span>    <span class="face"><</span>  \
- |    <span class="face">oo</span>    |
- |   <span class="face">^^^^</span>   |
-  \        /
-   '------'
-  <span class="ground">~~~~~~~~~~~</span></pre>
+        <div class="side-icons">
+            <span>🕷️</span>
+            <span>🦇</span>
+            <span>🎃</span>
+        </div>
     </div>
 
     <div class="controls">

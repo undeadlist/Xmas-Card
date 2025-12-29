@@ -60,16 +60,13 @@
             margin: 10px 0;
         }
 
-        .flag {
-            font-size: 12px;
-            line-height: 1.1;
-            white-space: pre;
+        .side-icons {
+            font-size: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            filter: drop-shadow(0 0 10px #ff0000);
         }
-
-        .red { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
-        .white { color: #ffffff; text-shadow: 0 0 10px #ffffff; }
-        .blue { color: #0000ff; text-shadow: 0 0 10px #0000ff; }
-        .star { color: #fff; text-shadow: 0 0 15px #fff; }
 
         .video-container {
             border: 5px solid #ff0000;
@@ -162,15 +159,11 @@
     <div class="subtitle">~ Independence Day ~</div>
 
     <div class="video-section">
-        <pre class="flag"><span class="blue">* * * * *</span> <span class="red">================</span>
-<span class="blue"> * * * * </span> <span class="white">================</span>
-<span class="blue">* * * * *</span> <span class="red">================</span>
-<span class="blue"> * * * * </span> <span class="white">================</span>
-<span class="blue">* * * * *</span> <span class="red">================</span>
-<span class="white">=========================</span>
-<span class="red">=========================</span>
-<span class="white">=========================</span>
-<span class="red">=========================</span></pre>
+        <div class="side-icons">
+            <span>🇺🇸</span>
+            <span>🎆</span>
+            <span>🗽</span>
+        </div>
 
         <div class="video-container">
             <iframe id="ytplayer" width="640" height="360"
@@ -181,15 +174,11 @@
             </iframe>
         </div>
 
-        <pre class="flag"><span class="red">================</span> <span class="blue">* * * * *</span>
-<span class="white">================</span> <span class="blue"> * * * * </span>
-<span class="red">================</span> <span class="blue">* * * * *</span>
-<span class="white">================</span> <span class="blue"> * * * * </span>
-<span class="red">================</span> <span class="blue">* * * * *</span>
-<span class="white">=========================</span>
-<span class="red">=========================</span>
-<span class="white">=========================</span>
-<span class="red">=========================</span></pre>
+        <div class="side-icons">
+            <span>🎇</span>
+            <span>⭐</span>
+            <span>🇺🇸</span>
+        </div>
     </div>
 
     <div class="controls">

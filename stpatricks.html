@@ -60,15 +60,13 @@
             margin: 10px 0;
         }
 
-        .shamrock {
-            color: #00ff00;
-            font-size: 14px;
-            line-height: 1.2;
-            white-space: pre;
-            text-shadow: 0 0 15px #00ff00;
+        .side-icons {
+            font-size: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            filter: drop-shadow(0 0 10px #00ff00);
         }
-
-        .gold { color: #ffd700; text-shadow: 0 0 15px #ffd700; }
 
         .video-container {
             border: 5px solid #00ff00;
@@ -161,16 +159,11 @@
     <div class="subtitle">~ Luck of the Irish ~</div>
 
     <div class="video-section">
-        <pre class="shamrock">    ___
-   (   )
-  (     )
-   (   )
-    \_/
-  ___!___
- (       )
-(  <span class="gold">$$$</span>   )
-(  <span class="gold">$$$</span>   )
- (_______)</pre>
+        <div class="side-icons">
+            <span>☘️</span>
+            <span>🍀</span>
+            <span>🌈</span>
+        </div>
 
         <div class="video-container">
             <iframe id="ytplayer" width="640" height="360"
@@ -181,14 +174,11 @@
             </iframe>
         </div>
 
-        <pre class="shamrock">   ( )   ( )
-    ( ) ( )
-     (   )
-   ( ) | ( )
-  (   )|(   )
-   ( ) | ( )
-       |
-      /_\</pre>
+        <div class="side-icons">
+            <span>🪙</span>
+            <span>🍀</span>
+            <span>☘️</span>
+        </div>
     </div>
 
     <div class="controls">

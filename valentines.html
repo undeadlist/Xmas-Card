@@ -60,12 +60,12 @@
             margin: 10px 0;
         }
 
-        .heart {
-            color: #ff1493;
-            font-size: 14px;
-            line-height: 1.2;
-            white-space: pre;
-            text-shadow: 0 0 15px #ff1493;
+        .side-icons {
+            font-size: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            filter: drop-shadow(0 0 10px #ff1493);
         }
 
         .video-container {
@@ -159,14 +159,11 @@
     <div class="subtitle">~ With Love ~</div>
 
     <div class="video-section">
-        <pre class="heart">  ***     ***
- *****   *****
-*******.*******
- *************
-  ***********
-    *******
-      ***
-       *</pre>
+        <div class="side-icons">
+            <span>❤️</span>
+            <span>💕</span>
+            <span>💘</span>
+        </div>
 
         <div class="video-container">
             <iframe id="ytplayer" width="640" height="360"
@@ -177,14 +174,11 @@
             </iframe>
         </div>
 
-        <pre class="heart">  ***     ***
- *****   *****
-*******.*******
- *************
-  ***********
-    *******
-      ***
-       *</pre>
+        <div class="side-icons">
+            <span>💖</span>
+            <span>💗</span>
+            <span>❤️</span>
+        </div>
     </div>
 
     <div class="controls">

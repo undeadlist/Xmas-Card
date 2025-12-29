@@ -60,18 +60,13 @@
             margin: 10px 0;
         }
 
-        .cake {
-            color: #ff69b4;
-            font-size: 14px;
-            line-height: 1.2;
-            white-space: pre;
-            text-shadow: 0 0 10px #ff69b4;
+        .side-icons {
+            font-size: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            filter: drop-shadow(0 0 10px #ff69b4);
         }
-
-        .candle { color: #ffd700; text-shadow: 0 0 15px #ffa500; }
-        .flame { color: #ff4500; text-shadow: 0 0 20px #ff4500; }
-        .frosting { color: #fff; }
-        .plate { color: #c0c0c0; }
 
         .video-container {
             border: 5px solid #ff69b4;
@@ -164,14 +159,11 @@
     <div class="subtitle">~ Make a Wish! ~</div>
 
     <div class="video-section">
-        <pre class="cake">     <span class="flame">)</span>
-     <span class="candle">|</span>
-   <span class="frosting">~~~~~~~</span>
-  <span class="frosting">/</span>       <span class="frosting">\</span>
- |  <span class="frosting">@</span> <span class="frosting">@</span> <span class="frosting">@</span>  |
- |         |
-  \       /
-   <span class="plate">-------</span></pre>
+        <div class="side-icons">
+            <span>🎂</span>
+            <span>🎈</span>
+            <span>🎁</span>
+        </div>
 
         <div class="video-container">
             <iframe id="ytplayer" width="640" height="360"
@@ -182,14 +174,11 @@
             </iframe>
         </div>
 
-        <pre class="cake">   <span class="flame">)</span> <span class="flame">)</span> <span class="flame">)</span>
-   <span class="candle">|</span> <span class="candle">|</span> <span class="candle">|</span>
-  <span class="frosting">~~~~~~~~~</span>
- <span class="frosting">/</span>         <span class="frosting">\</span>
-|  <span class="frosting">* * * *</span>  |
-|           |
- \         /
-  <span class="plate">---------</span></pre>
+        <div class="side-icons">
+            <span>🎉</span>
+            <span>🎈</span>
+            <span>🎂</span>
+        </div>
     </div>
 
     <div class="controls">
