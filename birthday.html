@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: linear-gradient(180deg, #1a0a2e 0%, #2d1b4e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .floaters {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .floater {
+            position: absolute;
+            opacity: 0.8;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        h1 {
+            color: #ff69b4;
+            margin: 15px 0 20px 0;
+            text-shadow: 0 0 30px #ff69b4, 0 0 60px #ff1493;
+            font-size: 3em;
+        }
+
+        .subtitle {
+            color: #ffd700;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ffd700;
+        }
+
+        .video-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 10px 0;
+        }
+
+        .cake {
+            color: #ff69b4;
+            font-size: 14px;
+            line-height: 1.2;
+            white-space: pre;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+
+        .candle { color: #ffd700; text-shadow: 0 0 15px #ffa500; }
+        .flame { color: #ff4500; text-shadow: 0 0 20px #ff4500; }
+        .frosting { color: #fff; }
+        .plate { color: #c0c0c0; }
+
+        .video-container {
+            border: 5px solid #ff69b4;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.4), 0 0 60px rgba(255, 215, 0, 0.3);
+        }
+
+        #ytplayer {
+            display: block;
+            background: #000;
+        }
+
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: #fff;
+            border: 3px solid #ffd700;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.7);
+            transform: scale(1.05);
+        }
+
+        .lyrics-container {
+            margin: 20px 0;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .lyric-current {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff69b4;
+            text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+            margin: 10px 0;
+            min-height: 45px;
+            transition: all 0.3s ease;
+        }
+
+        .lyric-next {
+            font-size: 20px;
+            color: #666;
+            min-height: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .lyric-current.chorus {
+            color: #ffd700;
+            text-shadow: 0 0 20px #ffd700, 0 0 40px #ffa500;
+        }
+
+        .lyric-current.highlight {
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #00bfff;
+        }
+
+        .credit {
+            color: #666;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .decorations {
+            font-size: 30px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="floaters" id="floaters"></div>
+
+    <h1>Happy Birthday!</h1>
+    <div class="subtitle">~ Make a Wish! ~</div>
+
+    <div class="video-section">
+        <pre class="cake">     <span class="flame">)</span>
+     <span class="candle">|</span>
+   <span class="frosting">~~~~~~~</span>
+  <span class="frosting">/</span>       <span class="frosting">\</span>
+ |  <span class="frosting">@</span> <span class="frosting">@</span> <span class="frosting">@</span>  |
+ |         |
+  \       /
+   <span class="plate">-------</span></pre>
+
+        <div class="video-container">
+            <iframe id="ytplayer" width="640" height="360"
+                src="https://www.youtube.com/embed/5qm8PH4xAss?enablejsapi=1&origin=https://undeadlist.github.io"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <pre class="cake">   <span class="flame">)</span> <span class="flame">)</span> <span class="flame">)</span>
+   <span class="candle">|</span> <span class="candle">|</span> <span class="candle">|</span>
+  <span class="frosting">~~~~~~~~~</span>
+ <span class="frosting">/</span>         <span class="frosting">\</span>
+|  <span class="frosting">* * * *</span>  |
+|           |
+ \         /
+  <span class="plate">---------</span></pre>
+    </div>
+
+    <div class="controls">
+        <button onclick="playVideo()">Play</button>
+        <button onclick="restartVideo()">Restart</button>
+    </div>
+
+    <div class="lyrics-container">
+        <div class="lyric-current" id="lyricCurrent"></div>
+        <div class="lyric-next" id="lyricNext"></div>
+    </div>
+
+    <div class="credit">Happy Birthday!</div>
+    <div class="decorations">
+        <span>🎂</span>
+        <span>🎈</span>
+        <span>🎁</span>
+        <span>🎉</span>
+        <span>🎂</span>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        const lyricCurrent = document.getElementById('lyricCurrent');
+        const lyricNext = document.getElementById('lyricNext');
+        let player;
+        let lyricInterval;
+
+        const floatChars = ['🎈', '🎁', '🎉', '✨', '⭐'];
+        function addFloater() {
+            const f = document.createElement('div');
+            f.className = 'floater';
+            f.textContent = floatChars[Math.floor(Math.random() * floatChars.length)];
+            f.style.left = Math.random() * 100 + 'vw';
+            f.style.animationDuration = (Math.random() * 3 + 7) + 's';
+            f.style.fontSize = (Math.random() * 12 + 16) + 'px';
+            document.getElementById('floaters').appendChild(f);
+            setTimeout(() => f.remove(), 10000);
+        }
+        for (let i = 0; i < 10; i++) setTimeout(addFloater, Math.random() * 2000);
+        setInterval(addFloater, 800);
+
+        const lyrics = [
+            { time: 0, text: "🎂 🎈 🎂", type: "highlight" },
+            { time: 5, text: "Add your lyrics here!", type: "" },
+            { time: 10, text: "Edit the lyrics array in this file", type: "" },
+            { time: 15, text: "Match times to your song", type: "" },
+            { time: 20, text: "🎂 Happy Birthday! 🎂", type: "highlight" }
+        ];
+
+        let currentLyricIdx = -1;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            lyricNext.textContent = 'Click video to play...';
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                lyricInterval = setInterval(updateLyrics, 100);
+            } else {
+                clearInterval(lyricInterval);
+            }
+            if (event.data == YT.PlayerState.ENDED) {
+                lyricCurrent.textContent = '🎂 Happy Birthday! 🎂';
+                lyricCurrent.className = 'lyric-current highlight';
+                lyricNext.textContent = '';
+            }
+        }
+
+        function updateLyrics() {
+            if (!player || !player.getCurrentTime) return;
+            const time = player.getCurrentTime();
+            let idx = -1;
+
+            for (let i = lyrics.length - 1; i >= 0; i--) {
+                if (time >= lyrics[i].time) {
+                    idx = i;
+                    break;
+                }
+            }
+
+            if (idx !== currentLyricIdx) {
+                currentLyricIdx = idx;
+                if (idx >= 0) {
+                    lyricCurrent.textContent = lyrics[idx].text;
+                    lyricCurrent.className = 'lyric-current ' + (lyrics[idx].type || '');
+                    if (idx + 1 < lyrics.length) {
+                        lyricNext.textContent = lyrics[idx + 1].text;
+                    } else {
+                        lyricNext.textContent = '';
+                    }
+                }
+            }
+        }
+
+        function playVideo() {
+            if (player && player.playVideo) player.playVideo();
+        }
+
+        function restartVideo() {
+            if (player && player.seekTo) {
+                player.seekTo(0);
+                player.playVideo();
+                currentLyricIdx = -1;
+            }
+        }
+
+        lyricCurrent.textContent = '';
+        lyricNext.textContent = 'Loading...';
+    </script>
+</body>
+</html>
