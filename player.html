@@ -203,9 +203,12 @@
    <span class="snow">~*~*~*~*~</span></pre>
 
         <div class="video-container">
-            <video id="video" width="640" height="360" controls>
-                <source src="Wham! - Last Christmas (Official Video) - WhamVEVO (720p, h264, youtube).mp4" type="video/mp4">
-            </video>
+            <iframe id="ytplayer" width="640" height="360"
+                src="https://www.youtube.com/embed/E8gmARGvPlI?enablejsapi=1&origin=https://undeadlist.github.io"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
 
         <!-- Right Tree -->
@@ -243,10 +246,12 @@
         <span class="ornament-swing">🎅</span>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        const video = document.getElementById('video');
         const lyricCurrent = document.getElementById('lyricCurrent');
         const lyricNext = document.getElementById('lyricNext');
+        let player;
+        let lyricInterval;
 
         // Snowflakes
         const snowChars = ['❄', '*'];
@@ -315,8 +320,35 @@
 
         let currentLyricIdx = -1;
 
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            lyricNext.textContent = 'Click video to play...';
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                lyricInterval = setInterval(updateLyrics, 100);
+            } else {
+                clearInterval(lyricInterval);
+            }
+            if (event.data == YT.PlayerState.ENDED) {
+                lyricCurrent.textContent = '🎄 Happy Christmas! 🎄';
+                lyricCurrent.className = 'lyric-current highlight';
+                lyricNext.textContent = '';
+            }
+        }
+
         function updateLyrics() {
-            const time = video.currentTime;
+            if (!player || !player.getCurrentTime) return;
+            const time = player.getCurrentTime();
             let idx = -1;
 
             for (let i = lyrics.length - 1; i >= 0; i--) {
@@ -340,27 +372,20 @@
             }
         }
 
-        video.addEventListener('timeupdate', updateLyrics);
-        video.addEventListener('ended', () => {
-            lyricCurrent.textContent = '🎄 Happy Christmas! 🎄';
-            lyricCurrent.className = 'lyric-current highlight';
-            lyricNext.textContent = '';
-        });
-
         function playVideo() {
-            video.play();
+            if (player && player.playVideo) player.playVideo();
         }
 
         function restartVideo() {
-            video.currentTime = 0;
-            currentLyricIdx = -1;
-            lyricCurrent.textContent = '';
-            lyricNext.textContent = lyrics[0].text;
-            video.play();
+            if (player && player.seekTo) {
+                player.seekTo(0);
+                player.playVideo();
+                currentLyricIdx = -1;
+            }
         }
 
         lyricCurrent.textContent = '';
-        lyricNext.textContent = 'Press Play to start...';
+        lyricNext.textContent = 'Loading...';
     </script>
 </body>
 </html>
