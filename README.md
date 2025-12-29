@@ -2,11 +2,19 @@
 
 **Digital music greeting cards for every occasion.**
 
-Send festive, animated greeting cards with embedded YouTube videos and karaoke-style lyrics. Free, customizable, and hosted on GitHub Pages.
+![TuneCards Preview](screenshot.png)
 
-![Built by UndeadList](badge.png)
+---
+
+## About
+
+TuneCards is a silly, fun project from [**UndeadList**](https://undeadlist.com) — the indie dev flea market.
+
+Why? Because sending a link is easier than a Hallmark card. Pick a holiday, share the URL, done.
 
 **Live Demo:** [undeadlist.github.io/TuneCards](https://undeadlist.github.io/TuneCards/)
+
+Want to use it as your own e-card? Fork it, swap the YouTube video, done.
 
 ---
 
@@ -30,6 +38,8 @@ Send festive, animated greeting cards with embedded YouTube videos and karaoke-s
 1. Fork this repo
 2. Enable GitHub Pages (Settings → Pages → Deploy from `main`)
 3. Share your link: `https://yourusername.github.io/TuneCards/christmas.html`
+
+That's it. Send the link to someone. They click, music plays, holiday vibes happen.
 
 ---
 
@@ -69,13 +79,11 @@ const lyrics = [
 - `text` — The lyric to display
 - `type` — Style: `""` (normal), `"chorus"` (purple glow), `"highlight"` (green glow)
 
-**Tip:** Play your video and note timestamps for each line.
-
 ### Create a New Holiday Card
 
 1. Copy any existing template
 2. Update the CSS colors (background, borders, text shadows)
-3. Change the floating elements in JavaScript:
+3. Change the floating elements:
    ```javascript
    const floatChars = ['❤️', '💕', '💘'];  // Your emoji set
    ```
@@ -88,21 +96,9 @@ const lyrics = [
 ## Tech Stack
 
 - Pure HTML/CSS/JavaScript
-- YouTube IFrame API for video playback
+- YouTube IFrame API
 - No build tools, no dependencies
 - Hosted free on GitHub Pages
-
----
-
-## Local Development
-
-Open any HTML file directly in your browser, or run a local server:
-
-```bash
-python -m http.server 8080
-```
-
-Visit `http://localhost:8080`
 
 ---
 
@@ -114,8 +110,8 @@ MIT — Do whatever you want with it.
 
 <p align="center">
   <a href="https://undeadlist.com">
-    <img src="badge.png" alt="Built by UndeadList" height="40">
+    <img src="badge.png" alt="Built by UndeadList" height="32">
   </a>
   <br>
-  <sub>Built by <a href="https://undeadlist.com">undeadlist.com</a></sub>
+  <sub>Built by <a href="https://undeadlist.com">UndeadList</a> — the indie dev flea market</sub>
 </p>
