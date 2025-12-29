@@ -3,184 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holiday Cards</title>
+    <title>TuneCards - Digital Music Greeting Cards</title>
+    <meta name="description" content="Send festive digital greeting cards with music for every holiday. Free, customizable, and hosted on GitHub Pages.">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --bg-dark: #0d0d0d;
+            --bg-card: #1a1a1a;
+            --bg-hover: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --text-muted: #555555;
+            --accent: #00d4ff;
+            --border: #333333;
+        }
+
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: var(--bg-dark);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Courier New', monospace;
-            color: #fff;
-            padding: 40px 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 20px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            height: 60px;
+            margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
         }
 
-        .subtitle {
-            color: #888;
-            margin-bottom: 40px;
-            font-size: 1.2em;
+        h1 span {
+            color: var(--accent);
         }
 
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        /* Card Grid */
         .cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 3px solid;
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease;
-            width: 220px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            background: var(--bg-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
         }
 
         .card-icon {
-            font-size: 50px;
-            margin-bottom: 10px;
+            font-size: 40px;
+            margin-bottom: 16px;
         }
 
         .card-title {
-            font-size: 1.2em;
-            margin-bottom: 8px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
         .card-desc {
-            color: #888;
-            font-size: 0.8em;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
 
-        /* Christmas */
-        .card-christmas { border-color: #00ff00; }
-        .card-christmas:hover { box-shadow: 0 0 40px rgba(0, 255, 0, 0.4); background: rgba(0, 255, 0, 0.1); }
-        .card-christmas .card-title { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+        /* Features */
+        .features {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
 
-        /* Halloween */
-        .card-halloween { border-color: #ff6600; }
-        .card-halloween:hover { box-shadow: 0 0 40px rgba(255, 102, 0, 0.4); background: rgba(255, 102, 0, 0.1); }
-        .card-halloween .card-title { color: #ff6600; text-shadow: 0 0 10px #ff6600; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
 
-        /* Birthday */
-        .card-birthday { border-color: #ff69b4; }
-        .card-birthday:hover { box-shadow: 0 0 40px rgba(255, 105, 180, 0.4); background: rgba(255, 105, 180, 0.1); }
-        .card-birthday .card-title { color: #ff69b4; text-shadow: 0 0 10px #ff69b4; }
+        .feature {
+            padding: 20px;
+        }
 
-        /* Valentine's */
-        .card-valentines { border-color: #ff1493; }
-        .card-valentines:hover { box-shadow: 0 0 40px rgba(255, 20, 147, 0.4); background: rgba(255, 20, 147, 0.1); }
-        .card-valentines .card-title { color: #ff1493; text-shadow: 0 0 10px #ff1493; }
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
 
-        /* St. Patrick's */
-        .card-stpatricks { border-color: #00cc00; }
-        .card-stpatricks:hover { box-shadow: 0 0 40px rgba(0, 204, 0, 0.4); background: rgba(0, 204, 0, 0.1); }
-        .card-stpatricks .card-title { color: #00cc00; text-shadow: 0 0 10px #00cc00; }
+        .feature h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
 
-        /* 4th of July */
-        .card-july4th { border-color: #ff0000; }
-        .card-july4th:hover { box-shadow: 0 0 40px rgba(255, 0, 0, 0.4), 0 0 60px rgba(0, 0, 255, 0.3); background: rgba(255, 0, 0, 0.1); }
-        .card-july4th .card-title { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+        .feature p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
 
-        /* Thanksgiving */
-        .card-thanksgiving { border-color: #ff8c00; }
-        .card-thanksgiving:hover { box-shadow: 0 0 40px rgba(255, 140, 0, 0.4); background: rgba(255, 140, 0, 0.1); }
-        .card-thanksgiving .card-title { color: #ff8c00; text-shadow: 0 0 10px #ff8c00; }
-
-        /* New Year */
-        .card-newyear { border-color: #ffd700; }
-        .card-newyear:hover { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); background: rgba(255, 215, 0, 0.1); }
-        .card-newyear .card-title { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
-
+        /* Footer */
         footer {
-            margin-top: 50px;
-            color: #555;
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
             text-align: center;
         }
 
-        footer a {
-            color: #888;
-            text-decoration: none;
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
         }
 
-        footer a:hover {
-            color: #fff;
+        .footer-badge {
+            height: 40px;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.75rem; }
+            .tagline { font-size: 1rem; }
+            .cards { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <h1>Holiday Cards</h1>
-    <div class="subtitle">Pick a holiday to celebrate!</div>
+    <header>
+        <img src="logo.png" alt="UndeadList" class="logo">
+        <h1>Tune<span>Cards</span></h1>
+        <p class="tagline">Digital music greeting cards for every occasion. Pick a holiday, share the link.</p>
+    </header>
 
-    <div class="cards">
-        <a href="newyear.html" class="card card-newyear">
-            <div class="card-icon">🎆</div>
-            <div class="card-title">New Year</div>
-            <div class="card-desc">Champagne & fireworks</div>
-        </a>
+    <main>
+        <h2 class="section-title">Choose a Card</h2>
 
-        <a href="valentines.html" class="card card-valentines">
-            <div class="card-icon">❤️</div>
-            <div class="card-title">Valentine's</div>
-            <div class="card-desc">Love & floating hearts</div>
-        </a>
+        <div class="cards">
+            <a href="newyear.html" class="card">
+                <div class="card-icon">🎆</div>
+                <div class="card-title">New Year</div>
+                <div class="card-desc">Ring in the new year with champagne and fireworks</div>
+            </a>
 
-        <a href="stpatricks.html" class="card card-stpatricks">
-            <div class="card-icon">☘️</div>
-            <div class="card-title">St. Patrick's</div>
-            <div class="card-desc">Luck of the Irish</div>
-        </a>
+            <a href="valentines.html" class="card">
+                <div class="card-icon">❤️</div>
+                <div class="card-title">Valentine's Day</div>
+                <div class="card-desc">Floating hearts and love songs</div>
+            </a>
 
-        <a href="birthday.html" class="card card-birthday">
-            <div class="card-icon">🎂</div>
-            <div class="card-title">Birthday</div>
-            <div class="card-desc">Cake & balloons</div>
-        </a>
+            <a href="stpatricks.html" class="card">
+                <div class="card-icon">☘️</div>
+                <div class="card-title">St. Patrick's Day</div>
+                <div class="card-desc">Luck of the Irish with shamrocks</div>
+            </a>
 
-        <a href="july4th.html" class="card card-july4th">
-            <div class="card-icon">🇺🇸</div>
-            <div class="card-title">4th of July</div>
-            <div class="card-desc">Stars & fireworks</div>
-        </a>
+            <a href="birthday.html" class="card">
+                <div class="card-icon">🎂</div>
+                <div class="card-title">Birthday</div>
+                <div class="card-desc">Cake, candles, and celebration</div>
+            </a>
 
-        <a href="halloween.html" class="card card-halloween">
-            <div class="card-icon">🎃</div>
-            <div class="card-title">Halloween</div>
-            <div class="card-desc">Spooky bats & ghosts</div>
-        </a>
+            <a href="july4th.html" class="card">
+                <div class="card-icon">🇺🇸</div>
+                <div class="card-title">4th of July</div>
+                <div class="card-desc">Stars, stripes, and fireworks</div>
+            </a>
 
-        <a href="thanksgiving.html" class="card card-thanksgiving">
-            <div class="card-icon">🦃</div>
-            <div class="card-title">Thanksgiving</div>
-            <div class="card-desc">Falling leaves & gratitude</div>
-        </a>
+            <a href="halloween.html" class="card">
+                <div class="card-icon">🎃</div>
+                <div class="card-title">Halloween</div>
+                <div class="card-desc">Spooky vibes with bats and ghosts</div>
+            </a>
 
-        <a href="christmas.html" class="card card-christmas">
-            <div class="card-icon">🎄</div>
-            <div class="card-title">Christmas</div>
-            <div class="card-desc">Snowflakes & carols</div>
-        </a>
-    </div>
+            <a href="thanksgiving.html" class="card">
+                <div class="card-icon">🦃</div>
+                <div class="card-title">Thanksgiving</div>
+                <div class="card-desc">Falling leaves and gratitude</div>
+            </a>
+
+            <a href="christmas.html" class="card">
+                <div class="card-icon">🎄</div>
+                <div class="card-title">Christmas</div>
+                <div class="card-desc">Snowflakes and holiday carols</div>
+            </a>
+        </div>
+
+        <section class="features">
+            <h2 class="section-title">How It Works</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎵</div>
+                    <h3>YouTube Powered</h3>
+                    <p>Cards play music videos directly from YouTube. No file hosting needed.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Karaoke Lyrics</h3>
+                    <p>Synced lyrics appear as the song plays. Customize timing in the code.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✨</div>
+                    <h3>Festive Effects</h3>
+                    <p>Each card has themed animations—snowflakes, hearts, leaves, and more.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Fully Customizable</h3>
+                    <p>Fork the repo, swap the video, edit the lyrics. Make it yours.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>Create your own! See <a href="https://github.com/undeadlist/Xmas-Card">README</a> for instructions.</p>
+        <div class="footer-brand">
+            <img src="badge.png" alt="Built by UndeadList" class="footer-badge">
+        </div>
+        <p class="footer-text">Built by <a href="https://undeadlist.com" style="color: var(--accent); text-decoration: none;">undeadlist.com</a></p>
+        <div class="footer-links">
+            <a href="https://github.com/undeadlist/TuneCards">GitHub</a>
+            <a href="README.md">Documentation</a>
+        </div>
     </footer>
 </body>
 </html>
